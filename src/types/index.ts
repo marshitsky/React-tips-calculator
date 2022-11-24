@@ -10,12 +10,12 @@ export interface IInput {
 }
 
 export interface ISelect {
-  onChange: (event: IOptions | unknown, actionMeta: ActionMeta<IOptions | unknown>) => void;
-  value: IOptions;
-  options: IOptions[];
+  onChange: (event: IOption | unknown, actionMeta: ActionMeta<IOption | unknown>) => void;
+  value: IOption;
+  options: IOption[];
 }
 
-export interface IOptions {
+export interface IOption {
   value: number;
   label: string;
 }

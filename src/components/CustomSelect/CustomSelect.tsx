@@ -3,5 +3,5 @@ import { styles } from "./styles";
 import { ISelect } from "../../types";
 
 export const CustomSelect = (props: ISelect) => {
-  return <Select styles={styles} {...props} />;
+  return <Select styles={styles} {...props}/>;
 };
