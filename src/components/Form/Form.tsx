@@ -2,7 +2,7 @@ import { CustomSelect } from "../CustomSelect/CustomSelect";
 import { Input } from "../Input/Input";
 import { StyledForm, Total } from "./styles";
 import { useInput } from "../../hooks/useInput";
-import {  FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Button } from "../Button/Button";
 import { IOption } from "../../types";
 import { ActionMeta } from "react-select";
@@ -21,28 +21,26 @@ export const Form = () => {
   const billSum = useInput();
   const guestsQty = useInput();
 
-  const billSumToCount = +Object.values(billSum)[0];
-  const guestsQtyToCount = +Object.values(guestsQty)[0];
-
   const handleValue = (event: IOption | any, actionMeta: ActionMeta<IOption | unknown>) => {
     setSelectedValue(event);
   };
 
   const getTips = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    return billSumToCount !== 0 && guestsQtyToCount !== 0
+    return +billSum.value !== 0 && +guestsQty.value !== 0
       ? setTotal(
         (
-          (billSumToCount + (billSumToCount * Number(selectedValue.value)) / 100) /
-          guestsQtyToCount
+          (+billSum.value + (+billSum.value * Number(selectedValue.value)) / 100) /
+          +guestsQty.value
         ).toFixed(2),
       )
       : "0.00";
   };
 
   useEffect(() => {
-    guestsQty.value.length === 0 || 
-    billSum.value.length === 0 ? setDisabled(true) : setDisabled(false);
+    guestsQty.value.length === 0 || billSum.value.length === 0
+      ? setDisabled(true)
+      : setDisabled(false);
   }, [guestsQty.value.length, billSum.value.length]);
 
   return (
@@ -51,9 +49,7 @@ export const Form = () => {
       <Input type={"number"} placeholder={"Enter guests"} {...guestsQty} />
       <CustomSelect value={selectedValue} onChange={handleValue} options={options} />
       <Total>{`Total: ${total} $`}</Total>
-      <Button disabled={isDisabled}>
-        Ohhhoooo 🍻
-      </Button>
+      <Button disabled={isDisabled}>Ohhhoooo 🍻</Button>
     </StyledForm>
   );
 };
