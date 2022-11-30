@@ -1,18 +1,16 @@
 import { StylesConfig } from "react-select";
+import { IOption } from "../../types";
 
-export const styles: StylesConfig = {
+export const styles: StylesConfig<IOption> = {
   control: (baseStyles) => ({
     ...baseStyles,
-    width: "100%",
     height: "68px",
     borderRadius: "30px",
     border: "none",
-    outline: "none",
   }),
   valueContainer: (baseStyles) => ({
     ...baseStyles,
     textAlign: "center",
-    padding: "0",
   }),
   singleValue: (baseStyles) => ({
     ...baseStyles,
@@ -40,33 +38,31 @@ export const styles: StylesConfig = {
   }),
   menu: (baseStyles) => ({
     ...baseStyles,
-    width: "100%",
     border: "none",
-    boxShadow: "none",
     borderRadius: "30px",
+    boxShadow: "none",
   }),
   menuList: (baseStyles) => ({
     ...baseStyles,
-    padding: "0px",
+    padding: 0,
   }),
   option: (styles, { isDisabled, isFocused, isSelected }) => {
     return {
       ...styles,
+      display: "grid",
+      alignItems: "center",
+      height: "68px",
+      padding: "0",
+      borderRadius: "30px",
       backgroundColor: isDisabled
         ? undefined
         : isSelected
-          ? "#2ED2C9" 
-          : isFocused 
-            ? "#CBE8E6" 
+          ? "#2ED2C9"
+          : isFocused
+            ? "#CBE8E6"
             : undefined,
       color: isDisabled ? "#ccc" : isSelected ? ("white" ? "white" : "black") : "black",
       cursor: isDisabled ? "not-allowed" : "default",
-      borderRadius: "30px",
-      height: "68px",
-      display: "grid",
-      alignItems: "center",
-      padding: "0",
-
       ":active": {
         ...styles[":active"],
         backgroundColor: !isDisabled ? (isSelected ? "#FF5630" : "#ccc") : undefined,

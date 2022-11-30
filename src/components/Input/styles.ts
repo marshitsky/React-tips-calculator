@@ -1,14 +1,12 @@
 import styled from "styled-components";
 
 export const StyledInput = styled.input`
-  width: 100%;
   height: 68px;
-  border: none;
-  border-radius: 30px;
-  font-size: 18px;
-  color: #afa9a9;
-  text-align: center;
   margin-bottom: 32.5px;
+  text-align: center;
+  color: #afa9a9;
+  border-radius: 30px;
+  border: none;
   &::placeholder {
     opacity: 0.6;
   }
@@ -21,8 +19,5 @@ export const StyledInput = styled.input`
   }
   &:focus {
     outline: none;
-  }
-  @media (max-width: 744px) {
-    margin-bottom: 17px;
   }
 `;

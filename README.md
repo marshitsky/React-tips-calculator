@@ -28,27 +28,26 @@
 
 ## About The Project
 
-![Tips Calculator Screenshot](./src/assets/screenshots/screenshotOne.png)
-
-
+![Tips Calculator Screenshot](./screenshots/screenshotOne.png)
 
 A tip calculation app created with React.<br>
 With this app, you can easily divide the check amount by the number of guests, taking into account the waiter's tips.
 
 ### Built With
+
 <br>
 
-* ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-* ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-
+- ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+- ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
 ### Tools used
+
 <br>
 
-* Typescript
-* React-select
-* Styled-components
-* gh-pages
+- Typescript
+- React-select
+- Styled-components
+- gh-pages
 
 <br>
 

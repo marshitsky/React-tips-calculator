@@ -1,7 +1,13 @@
 import Select from "react-select";
+import { IOption } from "../../types";
 import { styles } from "./styles";
-import { ISelect } from "../../types";
 
-export const CustomSelect = (props: ISelect) => {
-  return <Select styles={styles} {...props}/>;
+interface IProps {
+  options: IOption[];
+  onChange: (event: IOption | null) => void;
+  value: IOption;
+}
+
+export const CustomSelect = (props: IProps) => {
+  return <Select {...props} isSearchable={false} styles={styles} isMulti={false} />;
 };

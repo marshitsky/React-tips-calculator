@@ -1,55 +1,52 @@
 import { CustomSelect } from "../CustomSelect/CustomSelect";
 import { Input } from "../Input/Input";
-import { StyledForm, Total } from "./styles";
+import { StyledForm, Total, Title, Subtitle } from "./styles";
 import { useInput } from "../../hooks/useInput";
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../Button/Button";
 import { IOption } from "../../types";
-import { ActionMeta } from "react-select";
 
-export const options: IOption[] = [
+const options: IOption[] = [
   { value: 10, label: "10%" },
   { value: 15, label: "15%" },
   { value: 20, label: "20%" },
 ];
 
 export const Form = () => {
-  const [total, setTotal] = useState("0.00");
-  const [selectedValue, setSelectedValue] = useState(options[0]);
-  const [isDisabled, setDisabled] = useState(true);
+  const [total, setTotal] = useState(0);
+  const [selectedValue, setSelectedValue] = useState<IOption>(options[0]);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const billSum = useInput();
-  const guestsQty = useInput();
+  const persons = useInput();
 
-  const handleValue = (event: IOption | any, actionMeta: ActionMeta<IOption | unknown>) => {
-    setSelectedValue(event);
+  const onChange = (event: IOption | null) => {
+    if (event) {
+      setSelectedValue(event);
+    }
   };
 
-  const getTips = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    return +billSum.value !== 0 && +guestsQty.value !== 0
-      ? setTotal(
-        (
-          (+billSum.value + (+billSum.value * Number(selectedValue.value)) / 100) /
-          +guestsQty.value
-        ).toFixed(2),
-      )
-      : "0.00";
+  const handleTips = () => {
+    const billTotalAmount = +billSum.value * (1 + selectedValue.value / 100);
+    const amountPerEachPerson = billTotalAmount / +persons.value;
+    setTotal(amountPerEachPerson);
   };
 
   useEffect(() => {
-    guestsQty.value.length === 0 || billSum.value.length === 0
-      ? setDisabled(true)
-      : setDisabled(false);
-  }, [guestsQty.value.length, billSum.value.length]);
+    persons.value && billSum.value ? setIsDisabled(false) : setIsDisabled(true);
+  }, [persons.value, billSum.value]);
 
   return (
-    <StyledForm onSubmit={getTips}>
-      <Input type={"number"} placeholder={"Enter bill"} {...billSum} />
-      <Input type={"number"} placeholder={"Enter guests"} {...guestsQty} />
-      <CustomSelect value={selectedValue} onChange={handleValue} options={options} />
-      <Total>{`Total: ${total} $`}</Total>
-      <Button disabled={isDisabled}>Ohhhoooo 🍻</Button>
+    <StyledForm>
+      <Title>Welcome to App</Title>
+      <Subtitle>Let’s go calculate your tips</Subtitle>
+      <Input type="number" placeholder="Enter bill" {...billSum} />
+      <Input type="number" placeholder="Enter guests" {...persons} />
+      <CustomSelect value={selectedValue} onChange={onChange} options={options} />
+      <Total>{`Total: ${total.toFixed(2)} $`}</Total>
+      <Button isDisabled={isDisabled} type="button" handleValue={handleTips}>
+        Ohhhoooo 🍻
+      </Button>
     </StyledForm>
   );
 };

@@ -1,27 +1,13 @@
 import styled from "styled-components";
+import shape from "./assets/images/shape.svg";
 
 const StyledApp = styled.div`
-  width: 456px;
-  margin: 15px 10px;
-  text-align: center;
-  @media (max-width: 744px) {
-    width: 331px;
-  }
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 10px;
+  background: top left no-repeat url(${shape}) #eaf2f2;
+  overflow: hidden;
 `;
 
-const Title = styled.h1`
-  font-size: 40px;
-  @media (max-width: 744px) {
-    font-size: 24px;
-  }
-`;
-
-const Subtitle = styled.p`
-  font-size: 32px;
-  color: #756c6c;
-  @media (max-width: 744px) {
-    font-size: 24px;
-  }
-`;
-
-export { StyledApp, Title, Subtitle };
+export { StyledApp };

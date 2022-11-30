@@ -1,9 +1,18 @@
 import { StyledButton } from "./styles";
-import { IButton } from "../../types";
+import { ReactNode } from "react";
 
-export const Button = ({ children, disabled }: IButton) => {
+type ButtonType = "button" | "submit" | "reset";
+
+interface IProps {
+  children: ReactNode;
+  isDisabled: boolean;
+  handleValue?: () => void;
+  type: ButtonType;
+}
+
+export const Button = ({ children, isDisabled, handleValue, type }: IProps) => {
   return (
-    <StyledButton type="submit" disabled={disabled}>
+    <StyledButton type={type} disabled={isDisabled} onClick={handleValue}>
       {children}
     </StyledButton>
   );
