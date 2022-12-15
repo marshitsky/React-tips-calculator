@@ -6,7 +6,7 @@
    <h3 align="center">Tips Calculator</h3>
 
   <p align="center">
-    <a href="https://marshitsky.github.io/React-tips-calculator/" target="_blank">View Demo</a>
+    <a href="https://marshitsky.github.io/React-tips-calculator/">View Demo</a>
   </p>
 </div>
 
